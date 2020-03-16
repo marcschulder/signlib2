@@ -53,13 +53,7 @@ def get_hands_from_json(json_file_path):
         
         #keeping only the necessary coordinates i.e. removing torso
         #changed to fit the signing or not classifier
-        head_coco_idx = 0
-        right_shoulder_idx = 2
-        right_elbow_idx = 3
-        right_hand_idx = 4
-        left_shoulder_idx = 5
-        left_elbow_idx = 6
-        left_hand_idx = 7
+
 
         #This line for signing or not classifier
         raw_coords = np.array([raw_coords[0], raw_coords[2], raw_coords[3], raw_coords[4], raw_coords[5], raw_coords[6], raw_coords[7]])
@@ -93,8 +87,8 @@ def get_hands_from_json(json_file_path):
 #         non_dominant_array = preprocessing.scale(non_dominant_array)
 
 #for DTW uncomment this line    
-        return(dominant_array, non_dominant_array, dominant_array_confidence, non_dominant_array_confidence)
-        # return(final_scaled)
+        # return(dominant_array, non_dominant_array, dominant_array_confidence, non_dominant_array_confidence)
+        return(final_scaled)
 
 def get_list_of_directories(my_path):
     my_list_of_directories = []
