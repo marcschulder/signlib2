@@ -60,6 +60,8 @@ def get_hands_from_json(json_file_path):
         left_shoulder_idx = 5
         left_elbow_idx = 6
         left_hand_idx = 7
+
+        #This line for signing or not classifier
         raw_coords = np.array([raw_coords[0], raw_coords[2], raw_coords[3], raw_coords[4], raw_coords[5], raw_coords[6], raw_coords[7]])
         #For the DTW lexicon uncomment this line        
         # raw_coords = np.array([raw_coords[0], raw_coords[1], raw_coords[2], raw_coords[3], raw_coords[4], raw_coords[5], raw_coords[6], raw_coords[7], raw_coords[15], raw_coords[16], raw_coords[17], raw_coords[18]])
@@ -82,17 +84,17 @@ def get_hands_from_json(json_file_path):
        
         
         
-        dominant_array = np.array(final_scaled[4]) #change to raw_coords[4] for COCO
+        # dominant_array = np.array(final_scaled[4]) #change to raw_coords[4] for COCO
         #print(dominant_array)
-        non_dominant_array = np.array(final_scaled[7]) # change to raw_coords[7] for COCO
+        # non_dominant_array = np.array(final_scaled[7]) # change to raw_coords[7] for COCO
 #         dominant_array = scale_range(dominant_array, -1,1)
 #         non_dominant_array = scale_range(non_dominant_array, -1,1)
 #         dominant_array = preprocessing.scale(dominant_array)
 #         non_dominant_array = preprocessing.scale(non_dominant_array)
 
 #for DTW uncomment this line    
-        # return(dominant_array, non_dominant_array, dominant_array_confidence, non_dominant_array_confidence)
-        return(final_scaled)
+        return(dominant_array, non_dominant_array, dominant_array_confidence, non_dominant_array_confidence)
+        # return(final_scaled)
 
 def get_list_of_directories(my_path):
     my_list_of_directories = []
