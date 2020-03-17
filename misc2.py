@@ -73,7 +73,7 @@ def get_hands_from_json(json_file_path):
         scaledHands = np.array((handsx,scaledY))
         scaledHands = scaledHands.T
         
-        dist = distance.euclidean(scaledHands[2], scaledHands[5])
+        dist = distance.euclidean(scaledHands[1], scaledHands[4])
         final_scaled = scaledHands/dist
        
         
