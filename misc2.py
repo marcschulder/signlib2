@@ -27,7 +27,7 @@ def get_hands_from_json(json_file_path, *args, **kwargs):
             print("Empty file: ", json_file_path)
             # print(json_file_path)
             empty_array_for_hands = [0] * 14
-            return(empty_array_for_hands)
+            return("NaN","NaN","NaN","NaN")
             
         raw_coords = loaded_json["people"][0]["pose_keypoints_2d"]
         dominant_array_confidence = raw_coords[14]
