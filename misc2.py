@@ -13,19 +13,21 @@ def scale_range (input, min, max):
     input += min
     return input
 
-def get_hands_from_json(json_file_path):
+def get_hands_from_json(json_file_path, *args, **kwargs):
     """
     function to open a json file and return the x,y positions of the hands.
     Provide the path to the json file
     """
+    # returned_predictions = kwargs.get('predictions_array', None)
     with open(json_file_path) as f:
         loaded_json = json.load(f)
 #         for dest in loaded_json["people"][0]:
 #             print(dest)
         if len(loaded_json["people"]) == 0:
-            print("EMPTY")
-            print(json_file_path)
-            return("NaN","NaN","NaN","NaN")
+            print("Empty file: ", json_file_path)
+            # print(json_file_path)
+            empty_array_for_hands = [0] * 14
+            return(empty_array_for_hands)
             
         raw_coords = loaded_json["people"][0]["pose_keypoints_2d"]
         dominant_array_confidence = raw_coords[14]
