@@ -134,3 +134,35 @@ def extract_videos_from_annotations(root, gloss_list):
                                 count = count+1
                     if count == 0:
                         print("No annotation found with this name")
+
+def extract_videos_from_annotations_colab(video_name, eaf_file_name, gloss_list):
+    """
+    Function to extract videos from eaf annotations.
+    Additionally it creates folders with the extracted frames for each video.
+    """
+    def check_folders(gl_name):
+        directory1 = "openpose/"+gl_name+"/"
+        if not os.path.exists(directory1):
+            os.makedirs(directory1)
+
+
+    file = pympi.Eaf(file_path=eaf_file_name)
+    tier_names = file.get_tier_names()
+
+
+    for tier_name in tier_names:           
+        annotations = file.get_annotation_data_for_tier(tier_name)
+        count = 0
+        for annotation in annotations:
+            for gloss in gloss_list:
+                if annotation[2] == gloss:
+                    start = annotation[0]
+                    end = annotation[1]
+                    print(start/1000,end/1000)
+                    check_folders(gloss)
+                    ffmpeg_extract_subclip(video_name, start/1000, end/1000, targetname="openpose/"+str(gloss)+"/"+"%#05d.mp4" % (count+1))
+                    # Comment next line if you don't want to extract the frames for each video
+                    # video_to_frames("Data/"+str(gloss)+"/Videos/"+"%#05d.mp4" % (count+1), "Data/"+str(gloss)+"/"+"%#05d" % (count+1) )
+                    count = count+1
+        if count == 0:
+            print("No annotation found with this name")
