@@ -4,10 +4,10 @@ import json
 from sklearn import preprocessing
 import pandas as pd
 import h5py
-from signlib import misc2
-from signlib import video_utils
-from signlib import pose
-from signlib import annotations
+import misc2
+import video_utils
+import pose
+import annotations
 
 def create_dataset(root):
     """
